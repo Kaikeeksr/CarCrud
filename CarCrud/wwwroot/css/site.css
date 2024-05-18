@@ -20,3 +20,18 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*msg de erro*/
+.field-validation-error{
+    color: red;
+}
+
+/*alerta*/
+.close-alert{
+    position: absolute;
+    right: -8px;
+    top: -12px;
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+}

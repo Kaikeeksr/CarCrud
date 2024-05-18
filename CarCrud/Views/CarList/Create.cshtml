@@ -14,31 +14,37 @@
     <div class="form-group mb-3">
         <label for="modelo">Modelo</label>
         <input type="text" asp-for="modelo" class="form-control" placeholder="Digite o modelo do carro">
+        @Html.ValidationMessageFor(x => x.modelo)
     </div>
 
     <div class="form-group mb-3">
         <label for="renavam">Renavam</label>
         <input type="text" asp-for="renavam" class="form-control" placeholder="Digite o código renavam do carro">
+        @Html.ValidationMessageFor(x => x.renavam)
     </div>
 
     <div class="form-group mb-3">
-        <label for="placa">PLaca</label>
+        <label for="placa">Placa</label>
         <input type="text" asp-for="placa" class="form-control" placeholder="Digite a placa do carro">
+        @Html.ValidationMessageFor(x => x.placa)
     </div>
 
     <div class="form-group mb-3">
         <label for="fabricationYear">Ano de fabricação</label>
         <input type="text" asp-for="ano_fabricacao" class="form-control" placeholder="Digite o ano de fabricação do carro">
+        @Html.ValidationMessageFor(x => x.ano_fabricacao)
     </div>
 
     <div class="form-group mb-3">
         <label for="cor">Cor</label>
         <input type="text" asp-for="cor"  class="form-control" placeholder="Digite a cor predominante do carro">
+        @Html.ValidationMessageFor(x => x.cor)
     </div>
 
     <div class="form-group mb-3">
         <label for="potencia">Potencia</label>
-        <input type="text" asp-for="potencia" class="form-control" placeholder="Digite a potência do carro">
+        <input type="text" asp-for="potencia" class="form-control" placeholder="Digite a potência (em cv) do carro">
+        @Html.ValidationMessageFor(x => x.potencia)
     </div>
 
     <div class="form-group mb-3">
@@ -51,6 +57,7 @@
             <option value="Minivan">Minivan</option>
             <option value="Perua">Perua</option>
         </select>
+        @Html.ValidationMessageFor(x => x.categoria)
     </div>
 
     <button type="submit" class="btn btn-success">Cadastrar</button>

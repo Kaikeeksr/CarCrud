@@ -2,6 +2,7 @@
 using CarCrud.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CarCrud.Controllers
 {
@@ -40,22 +41,70 @@ namespace CarCrud.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            _carroRepo.Delete(id);
-            return RedirectToAction("Index");
+            try
+            {
+               bool deleted =  _carroRepo.Delete(id);
+
+                if (deleted)
+                {
+                    TempData["MensagemSucesso"] = "Registro exclúido com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = $"Ops, não foi possível excluir o registro :/";
+                }
+                return RedirectToAction("Index");
+            } 
+            catch(System.Exception error) 
+            {
+                TempData["MensagemErro"] = $"Ops, não foi possível e o carro :/ \n erro:{error.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
+        //MÉTODOS
         [HttpPost]
         public IActionResult Create(CarModel car)
         {
-            _carroRepo.Add(car);
-            return RedirectToAction("Index");
+            //Impedindo que uma requisição vazia seja enviada
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _carroRepo.Add(car);
+                    TempData["MensagemSucesso"] = "Registro cadastrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(car);
+            }
+            catch (System.Exception error)
+            {
+
+                TempData["MensagemErro"] = $"Ops, não foi possível cadastrar o carro :/ \n erro:{error.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         public IActionResult Update(CarModel car)
         {
-            _carroRepo.Update(car);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _carroRepo.Update(car);
+                    TempData["MensagemSucesso"] = "Carro alterado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(car);
+            }
+            catch(System.Exception error)
+            {
+                TempData["MensagemErro"] = $"Ops, não foi possível atualizar registro :/ \n erro:{error.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
