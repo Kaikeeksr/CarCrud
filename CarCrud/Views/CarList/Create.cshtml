@@ -1,0 +1,58 @@
+﻿@model CarModel //importando a Model 
+
+@{
+    ViewData["Title"] = "Criar Carro";
+}
+
+<div class="text-center">
+    <div>
+        <h1 class="display-4">Cadastre um novo carro</h1>
+    </div>
+</div>
+
+<form aso-controller="CarList" asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label for="modelo">Modelo</label>
+        <input type="text" asp-for="modelo" class="form-control" placeholder="Digite o modelo do carro">
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="renavam">Renavam</label>
+        <input type="text" asp-for="renavam" class="form-control" placeholder="Digite o código renavam do carro">
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="placa">PLaca</label>
+        <input type="text" asp-for="placa" class="form-control" placeholder="Digite a placa do carro">
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="fabricationYear">Ano de fabricação</label>
+        <input type="text" asp-for="ano_fabricacao" class="form-control" placeholder="Digite o ano de fabricação do carro">
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="cor">Cor</label>
+        <input type="text" asp-for="cor"  class="form-control" placeholder="Digite a cor predominante do carro">
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="potencia">Potencia</label>
+        <input type="text" asp-for="potencia" class="form-control" placeholder="Digite a potência do carro">
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Categoria</label>
+        <select class="form-select" asp-for="categoria" aria-label="Categoria">
+            <option value="Sedã">Sedã</option>
+            <option value="Hatch">Hatchback</option>
+            <option value="SUV">Utilitário Esportivo (SUV)</option>
+            <option value="Picape">Picape</option>
+            <option value="Minivan">Minivan</option>
+            <option value="Perua">Perua</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Cadastrar</button>
+    <a class="btn btn-secondary" asp-controller="CarList" asp-action="Index">Voltar</a>
+</form>

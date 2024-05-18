@@ -1,0 +1,19 @@
+﻿@model CarModel
+@{
+    ViewData["Title"] = "Confirmação de exclusão de registro";
+}
+
+<div class="text-center">
+    <h3>Deseja excluir esse registro (@Model.modelo, ID: @Model.id)?</h3>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-center">
+    <a class="btn btn-secondary btn-lg mx-2" asp-controller="CarList" asp-action="Index">Cancelar</a>
+
+    <form asp-controller="CarList" asp-action="Delete" method="post" class="d-inline">
+        <input type="hidden" name="id" value="@Model.id" />
+        <button type="submit" class="btn btn-danger btn-lg mx-2">Confirmar exclusão</button>
+    </form>
+</div>

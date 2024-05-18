@@ -1,0 +1,52 @@
+﻿@model List<CarModel>
+@{
+    ViewData["Title"] = "Lista de carros";
+}
+
+<div class="text-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-success" role="button" asp-controller="CarList" asp-action="Create">+ Carro</a>
+    </div>
+</div>
+<br />
+
+<h1 class="display-4">Lista</h1>
+<table class="table table-borderless text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Cód. Renavam</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Ano de fabricação</th>
+            <th scope="col">Cor predominante</th>
+            <th scope="col">Potência</th>
+            <th scope="col">Categoria</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @if(Model != null && Model.Any())
+        {
+            foreach( CarModel car in Model)
+            {
+                <tr>
+                    <th scope="row">@car.id</th>
+                    <td>@car.modelo</td>
+                    <td>@car.renavam</td>
+                    <td>@car.placa</td>
+                    <td>@car.ano_fabricacao</td>
+                    <td>@car.cor</td>
+                    <td>@car.potencia</td>
+                    <td>@car.categoria</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a role="button" class="btn btn-primary" asp-route-id="@car.id" asp-controller="CarList" asp-action="Update">Editar</a>
+                            <a role="button" class="btn btn-danger" asp-route-id="@car.id"  asp-controller="CarList" asp-action="DeleteRequest">Apagar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

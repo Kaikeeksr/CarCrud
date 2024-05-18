@@ -1,3 +1,7 @@
+using CarCrud.DB;
+using CarCrud.Repositorio;
+using Microsoft.EntityFrameworkCore;
+
 namespace CarCrud
 {
     public class Program
@@ -8,6 +12,15 @@ namespace CarCrud
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<databaseContext>((services, options) =>
+            {
+                IConfiguration configurantion = services.GetRequiredService<IConfiguration>(); ;
+                string connectionString = configurantion.GetConnectionString("DataBase");
+                options.UseMySql(connectionString, new MySqlServerVersion(new Version(8,0,12)));
+            });
+
+            // Adiciona o repositório CarroRepo ao contêiner de serviços
+            builder.Services.AddScoped<ICarroRepo, CarroRepo>();
 
             var app = builder.Build();
 
